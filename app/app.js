@@ -1,8 +1,16 @@
 "use strict";
 
-var app = angular.module("TodoApp", ['ngRoute']);
+var app = angular.module("TodoApp", ['ngRoute'])
+.constant('FirebaseURL', "https://todo-8001c.firebaseio.com/")
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, FBCreds) {
+  let authConfig = {
+    apiKey: FBCreds.apiKey,
+    authDomain: FBCreds.authDomain
+  }
+  firebase.initializeApp(authConfig);
+
+
   $routeProvider.
   when('/items/list', {
     templateUrl: 'partials/item-list.html',
@@ -12,7 +20,7 @@ app.config(function($routeProvider) {
     templateUrl: 'partials/item-new.html',
     controller: 'ItemNewCtrl'
   }).
-  when('/items/details', {
+  when('/items/details/:itemId', {
     templateUrl: 'partials/item-details.html',
     controller: 'ItemViewCtrl'
   }).otherwise('/items/list');
