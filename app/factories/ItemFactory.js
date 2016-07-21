@@ -1,6 +1,6 @@
 "use strict";
 
-   app.factory("ItemStorage", function(FirebaseURL, $q, $http) {
+   app.factory("ItemStorage", function($q, $http, FirebaseURL) {
 
   let getItemList = function() {
     let items = [];
@@ -25,6 +25,8 @@
       $http.post(
         `${FirebaseURL}/items.json`,
         JSON.stringify(newItem))
+      //QUESTION
+      //does this send back the new Object?
       .success(function(ObjFromFirebase) {
         resolve(ObjFromFirebase)
       })

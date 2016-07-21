@@ -3,6 +3,11 @@
 var app = angular.module("TodoApp", ['ngRoute'])
 .constant('FirebaseURL', "https://todo-8001c.firebaseio.com/")
 
+//QUESTION: CAN YOU CHAIN .CONSTANTS ABOVE?
+//WHAT DOES NGROUTE DO?
+
+//WHY IS THERE NO BROWSERIFY FOR ANGULAR?
+
 app.config(function($routeProvider, FBCreds) {
   let authConfig = {
     apiKey: FBCreds.apiKey,
@@ -27,6 +32,7 @@ app.config(function($routeProvider, FBCreds) {
 })
 
 
+//what is this doing below???
 
 app.controller('TodoCtrl', function($scope) {
   $scope.showListView = true;
