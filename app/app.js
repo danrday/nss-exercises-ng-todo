@@ -1,46 +1,28 @@
 "use strict";
 
-var app = angular.module("TodoApp", []);
+var app = angular.module("TodoApp", ['ngRoute']);
 
-app.controller("NavCtrl", function($scope) {
-  $scope.navItems = [{name: "Logout"}, {name: "All Items"}, {name: "New Items"}];
-});
+app.config(function($routeProvider) {
+  $routeProvider.
+  when('/items/list', {
+    templateUrl: 'partials/item-list.html',
+    controller: 'ItemListCtrl'
+  }).
+  when('/items/new', {
+    templateUrl: 'partials/item-new.html',
+    controller: 'ItemNewCtrl'
+  }).
+  when('/items/details', {
+    templateUrl: 'partials/item-details.html',
+    controller: 'ItemViewCtrl'
+  }).otherwise('/items/list');
+})
+
+
 
 app.controller('TodoCtrl', function($scope) {
   $scope.showListView = true;
-  $scope.newTask = {};
-  $scope.items = [
-    {
-         id: 0,
-         task: "mow the lawn",
-         isCompleted: true,
-         dueDate: "12/5/17",
-         assignedTo: "Greg",
-         location: "Greg's mom's house",
-         urgency: "low",
-         dependencies: "sunshine, clippers, hat, water, headphones"
-       },
-       {
-         id: 1,
-         task: "grade quizzes",
-         isCompleted: false,
-         dueDate: "12/5/15",
-         assignedTo: "Joe",
-         location: "NSS",
-         urgency: "high",
-         dependencies: "wifi, tissues, vodka"
-       },
-       {
-         id: 2,
-         task: "take a nap",
-         isCompleted: false,
-         dueDate: "5/21/16",
-         assignedTo: "Joe",
-         location: "Joe's house",
-         urgency: "medium",
-         dependencies: "hammock, cat, pillow, blanket"
-       }
-  ];
+ 
 
   $scope.allItem = function() {
   console.log("You clicked allitem");
@@ -52,13 +34,6 @@ app.controller('TodoCtrl', function($scope) {
     $scope.showListView = false;
   }
 
-  $scope.addNewItem = function() {
-    $scope.newTask.isCompleted = false;
-    $scope.newTask.id = $scope.items.length;
-    console.log("Added new Item", $scope.newTask);
-    $scope.items.push($scope.newTask);
-    $scope.newTask = {};
-  }
 
 });
 
