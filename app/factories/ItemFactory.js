@@ -1,12 +1,12 @@
 "use strict";
 
-   app.factory("ItemStorage", function($q, $http, FirebaseURL) {
+   app.factory("ItemStorage", function($q, AuthFactory, $http, FirebaseURL) {
 
   let getItemList = function() {
-    console.log("GETITEMLIST")
+    let userId = AuthFactory.getUser();
     let items = [];
     return $q(function(resolve, reject) {
-      $http.get(`${FirebaseURL}items.json`)
+      $http.get(`${FirebaseURL}items.json?orderBy="uid"&equalTo="${userId}"`)
       .success(function(itemObject) {
         console.log("itemObject", itemObject)
         let itemCollection = itemObject;
