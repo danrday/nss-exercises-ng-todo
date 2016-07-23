@@ -29,11 +29,12 @@
             </div>
             <div class="col-xs-7"><a href="/#/items/details/{{thingy.id}}">{{thingy.task}}
             </div>
+            </a>
             <div class="col-xs-2">{{thingy.dueDate}}
             </div>
             <div class="col-xs-1">{{thingy.assignedTo}}
             </div>
-            <div class="col-xs-1"><button class="btn btn-danger">X</button></div>
+            <div class="col-xs-1""><button ng-click="deleteItem(thingy)" class="btn btn-danger">X</button></div>
           </div>
         </div>
       </div>

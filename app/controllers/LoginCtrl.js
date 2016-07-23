@@ -2,19 +2,13 @@
 
 app.controller("LoginCtrl", function($scope, $location, AuthFactory) {
 
-  // register function
-
-  // login function
- 
-  //logout function
-
-
-AuthFactory.authWithProvider()
+$scope.userLogin = function () {
+  AuthFactory.authWithProvider()
     .then(function(result) {
-      var user = result.user.uid;
-      console.log("logged in user fer sure", user);
+      AuthFactory.currentUserId = result.user.uid;
+      console.log("logged in user fer sure", AuthFactory.currentUserId);
       // Load to dos?
-      $location.path("/");
+      $location.path("items/list");
       $scope.$apply();
     }).catch(function(error) {
       // Handle Errors here.
@@ -26,8 +20,18 @@ AuthFactory.authWithProvider()
       var credential = error.credential;
       // ...
     });
+}
+
+
+//   register function
+
+//   login function
+ 
+//   logout function
+
+
+
 
 });
-
 
 

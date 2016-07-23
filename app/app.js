@@ -4,9 +4,14 @@ var app = angular.module("TodoApp", ['ngRoute'])
 .constant('FirebaseURL', "https://todo-8001c.firebaseio.com/")
 
 //QUESTION: CAN YOU CHAIN .CONSTANTS ABOVE?
-//WHAT DOES NGROUTE DO?
+//WHAT DOES NGROUTE DO? DOES IT LINK TO 'NG-VIEW' IN THE DOM? 
 
 //WHY IS THERE NO BROWSERIFY FOR ANGULAR?
+
+ function testFunc() {
+    console.log("HEY");
+  }
+
 
 app.config(function($routeProvider, FBCreds) {
   let authConfig = {
@@ -17,6 +22,10 @@ app.config(function($routeProvider, FBCreds) {
 
 
   $routeProvider.
+  when('/login', {
+    templateUrl: 'partials/login.html',
+    controller: 'LoginCtrl'
+  }).
   when('/items/list', {
     templateUrl: 'partials/item-list.html',
     controller: 'ItemListCtrl'
@@ -28,7 +37,7 @@ app.config(function($routeProvider, FBCreds) {
   when('/items/details/:itemId', {
     templateUrl: 'partials/item-details.html',
     controller: 'ItemViewCtrl'
-  }).otherwise('/items/list');
+  }).otherwise('/login');
 })
 
 
