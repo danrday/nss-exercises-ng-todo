@@ -10,6 +10,7 @@
       .success(function(itemObject) {
         console.log("itemObject", itemObject)
         let itemCollection = itemObject;
+        //this assures that if the database is empty, there will be no error when it tries to push null into the empty array
         if (itemCollection) {
         Object.keys(itemCollection).forEach(function(key) {
           itemCollection[key].id=key;
