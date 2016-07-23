@@ -12,6 +12,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     currentUserId = user.uid;
       } else {
         console.log("user not logged in");
+        currentUserId = null;
       }
 })
 
@@ -27,7 +28,11 @@ let getUser = function() {
   return currentUserId;
 };
 
-return {authWithProvider, isAuthenticated, getUser};
+let setUser = function(input) {
+  currentUserId = input;
+}
+
+return {authWithProvider, isAuthenticated, getUser, setUser};
 
 
 

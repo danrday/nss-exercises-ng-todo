@@ -5,9 +5,8 @@ app.controller("LoginCtrl", function($scope, $location, AuthFactory) {
 $scope.userLogin = function () {
   AuthFactory.authWithProvider()
     .then(function(result) {
-      AuthFactory.currentUserId = result.user.uid;
+      AuthFactory.setUser(result.user.uid);
       console.log("logged in user fer sure", AuthFactory.currentUserId);
-      // Load to dos?
       $location.path("items/list");
       $scope.$apply();
     }).catch(function(error) {

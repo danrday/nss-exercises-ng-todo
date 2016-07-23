@@ -4,7 +4,7 @@ app.controller("NavCtrl", function($scope) {
   $scope.navItems = [
     {
       name: "Logout",
-      url: "#/logout"
+      url: "#/login"
     }, 
     {
       name: "All Items",
@@ -15,4 +15,15 @@ app.controller("NavCtrl", function($scope) {
     url: "#/items/new"
     }
   ];
+
+$scope.logout = function() {
+  firebase.auth().signOut().then(function(){
+    console.log("Logout Successful");
+  }, function(error) {
+    console.log("Logout Error");
+  });
+};
+
+
+
 });
